@@ -57,10 +57,10 @@ private void updateBuildsMenuContribution() {
 
     def createBuildMap = {build ->
         def label = build.stateSuccess ? "$build.name" : "!> $build.name (${build.buildState})"
-
+        System.out.println("Build Server: $build.server");
         def subMenu = [
-                "Go to Last Build": {-> createOpenAction("http://$build.server/job/$build.job/lastBuild")},
-                "Go to Job": {-> createOpenAction("http://$build.server/job/$build.job")},
+                "Go to Last Build": {-> createOpenAction("$build.server/job/$build.job/lastBuild")},
+                "Go to Job": {-> createOpenAction("$build.server/job/$build.job")},
                 "Start Build": {->
                     onAModule.startJob(build)
 
